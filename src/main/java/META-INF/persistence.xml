@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence" version="1.0">
+  <persistence-unit name="project_nico_rival" transaction-type="RESOURCE_LOCAL">
+<!-- <persistence version="2.1" -->
+<!-- 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+<!-- 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"> -->
+<!-- 	<persistence-unit name="project_nico_rival"> -->
+
+		<class>com.websystique.springboot.model.Forfait</class>
+		<class>com.websystique.springboot.model.FactureMoniteur</class>
+		<class>com.websystique.springboot.model.FactureEleve</class>
+		<class>com.websystique.springboot.model.Document</class>
+		<class>com.websystique.springboot.model.DocEleve</class>
+		<class>com.websystique.springboot.model.Eleve</class>
+		<class>com.websystique.springboot.model.Moniteur</class>
+		<class>com.websystique.springboot.model.Profil</class>
+		<class>com.websystique.springboot.model.Reservation</class>
+		
+		
+
+<!-- 		<class>fr.autoecole.nova.novaschool.entities.Individu</class> -->
+<!-- 		<class>fr.autoecole.nova.novaschool.entities.Moniteur</class> -->
+<!-- 		<class>fr.autoecole.nova.novaschool.entities.Profil</class> -->
+<!-- 		<class>fr.autoecole.nova.novaschool.entities.Reservation</class> -->
+
+		<properties>
+					<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/websystique" />
+		</properties>
+	</persistence-unit>
+</persistence>
