@@ -1,12 +1,7 @@
-FROM python:3
-ADD __main__.py /
-#RUN apk add --no-cache gcc musl-dev linux-headers
-#RUN apt-get install -y python python-setuptools python-pip
-#COPY requirements.txt requirements.txt
-#RUN pip install -r requirements.txt
-RUN pip install bottle
-#RUN pip install _version
-COPY . .
-CMD [ "python", "./__main__.py" ]
-#docker build -t api-bracelet .
-#docker run api-bracelet
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","hello.Application"]
