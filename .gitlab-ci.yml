@@ -1,57 +1,33 @@
 # This file is a template, and might need editing before it works on your project.
-# Official image for Hashicorp's Terraform. It uses light image which is Alpine
-# based as it is much lighter.
-#
-# Entrypoint is also needed as image by default set `terraform` binary as an
-# entrypoint.
-image:
-  name: hashicorp/terraform:light
-  entrypoint:
-    - '/usr/bin/env'
-    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-
-# Default output file for Terraform plan
-variables:
-  PLAN: plan.tfplan
-
-cache:
-  paths:
-    - .terraform
-
-before_script:
-  - terraform --version
-  - terraform init
-
-stages:
-  - validate
-  - build
-  - test
-  - deploy
-
-validate:
-  stage: validate
-  script:
-    - terraform validate
-
-plan:
+docker-build-master:
+  # Official docker image.
+  image: docker:latest
   stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
   script:
-    - terraform plan -out=$PLAN
-  artifacts:
-    name: plan
-    paths:
-      - $PLAN
+    - docker build --pull -t "tzrocky/api-bracelet" .
+    - docker push "tzrocky/api-bracelet"
+  only:
+    variables:
+      - $CI_DEFAULT_BRANCH == $CI_COMMIT_REF_NAME
 
-# Separate apply job for manual launching Terraform as it can be destructive
-# action.
-apply:
+docker-test:unit:
+  stage: test
+  script: 
+    - echo 'test-unit'
+
+docker-test:functional:
+  stage: test
+  script: 
+    - echo 'test-functional'
+      
+docker-deploy-master:
   stage: deploy
-  environment:
-    name: production
-  script:
-    - terraform apply -input=false $PLAN
-  dependencies:
-    - plan
-  when: manual
+  image: cdrx/rancher-gitlab-deploy
   only:
     - master
+  script:
+    - upgrade --environment $RANCHER_ENV --stack Project26Academy --service nova_project --no-start-before-stopping --no-wait-for-upgrade-to-finish
