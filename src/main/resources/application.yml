@@ -1,7 +1,6 @@
 server:
   port: 8082
   contextPath: /SpringBootCRUDApp
----
 spring:
   profiles: local,default
 datasource:
@@ -17,7 +16,6 @@ datasource:
       show_sql: true
       format_sql: true
       dialect: org.hibernate.dialect.H2Dialect
----
 spring:
   profiles: prod
 datasource:
