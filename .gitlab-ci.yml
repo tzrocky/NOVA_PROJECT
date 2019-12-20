@@ -8,8 +8,8 @@ docker-build-master:
   before_script:
     - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
   script:
-    - docker build --pull -t "tzrocky/nova_project" .
-    - docker push "tzrocky/nova_project"
+    - docker build --pull -t "tzrocky/novaschool" .
+    - docker push "tzrocky/novaschool"
   only:
     variables:
       - $CI_DEFAULT_BRANCH == $CI_COMMIT_REF_NAME
