@@ -8,8 +8,8 @@ docker-build-master:
   before_script:
     - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
   script:
-    - docker build --pull -t "tzrocky/api-bracelet" .
-    - docker push "tzrocky/api-bracelet"
+    - docker build --pull -t "tzrocky/nova_project" .
+    - docker push "tzrocky/nova_project"
   only:
     variables:
       - $CI_DEFAULT_BRANCH == $CI_COMMIT_REF_NAME
