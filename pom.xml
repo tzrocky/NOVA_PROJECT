@@ -69,4 +69,9 @@
             </plugin>
         </plugins>
     </build>
+    <scm>
+    	<url>https://github.com/tzrocky/NOVA_PROJECT.git</url>
+    	<developerConnection>Rocky TSANE</developerConnection>
+    	<tag>developer</tag>
+    </scm>
 </project>
