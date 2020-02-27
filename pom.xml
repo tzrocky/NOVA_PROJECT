@@ -87,22 +87,31 @@
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
-			<plugin>
-				<!-- Include if you want to make an executable jar[FAT JAR which 
-					includes all dependencies along with sprinboot loader] that you can run on 
-					+ commandline using java -jar NAME -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
+			 <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <version>2.2.5.RELEASE</version>
+      <executions>
+        <execution>
+          <id>pre-integration-test</id>
+          <goals>
+            <goal>start</goal>
+          </goals>
+          <configuration>
+            <skip>${it.skip}</skip>
+          </configuration>
+        </execution>
+        <execution>
+          <id>post-integration-test</id>
+          <goals>
+            <goal>stop</goal>
+          </goals>
+          <configuration>
+            <skip>${it.skip}</skip>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
