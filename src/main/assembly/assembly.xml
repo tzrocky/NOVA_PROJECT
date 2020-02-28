@@ -11,6 +11,11 @@
     <fileSets>
         <fileSet>
             <directory>${project.basedir}/src/main/resources/conf</directory>
+            <outputDirectory>configuration</outputDirectory>
+            <includes>
+            	<include>**/*.properties</include>
+            	<include>**/*.yml</include>
+            </includes>
         </fileSet>
     </fileSets>
     <files>
