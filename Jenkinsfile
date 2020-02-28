@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        powershell(script: 'mvn clean test package', encoding: 'UTF-8', label: ' build')
+        powershell(script: "'${MAVEN_HOME}\\bin\\mvn.cmd' clean test package", encoding: 'UTF-8', label: ' build')
       }
     }
 
