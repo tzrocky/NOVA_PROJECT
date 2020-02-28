@@ -4,9 +4,10 @@ pipeline {
     stage('Build') {
       steps {
         script {
-                def mvnHome = tool 'Maven 3.6.3'
-        		powershell(script: "'${mvnHome}\\bin\\mvn.cmd' clean test package", encoding: 'UTF-8', label: ' build')
+          def mvnHome = tool name:'maven-3.3.9', type: 'maven'
+          powershell(script: "'${mvnHome}\\bin\\mvn.cmd' clean test package", encoding: 'UTF-8', label: ' build')
         }
+
       }
     }
 
