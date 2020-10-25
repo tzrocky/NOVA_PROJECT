@@ -1,6 +1,8 @@
 FROM alpine/git as clone 
-WORKDIR /
-RUN git clone https://github.com/tzrocky/nova_project.git
+ARG url
+WORKDIR /app
+RUN git clone ${url}
+#https://github.com/tzrocky/nova_project.git
 
 FROM maven:3.5-jdk-8-alpine as build 
 WORKDIR /
