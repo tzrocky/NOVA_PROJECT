@@ -1,3 +1,14 @@
+FROM alpine/git as clone 
+WORKDIR /
+RUN git clone https://github.com/tzrocky/nova_project.git
+
+FROM maven:3.5-jdk-8-alpine as build 
+WORKDIR /app
+COPY --from=clone /nova_project / 
+RUN mvn install
+
+
+
 # Start with a base image containing Java runtime
 FROM java:8
 #openjdk:8-jdk-alpine
