@@ -3,7 +3,7 @@ WORKDIR /
 RUN git clone https://github.com/tzrocky/nova_project.git
 
 FROM maven:3.5-jdk-8-alpine as build 
-WORKDIR /app
+WORKDIR /
 COPY --from=clone /nova_project / 
 RUN mvn install
 
