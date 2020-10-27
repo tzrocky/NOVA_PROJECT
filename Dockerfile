@@ -9,5 +9,5 @@ RUN mvn -f /home/app/pom.xml clean package
 # Create an Image
 FROM openjdk:8-jdk-alpine
 EXPOSE 5000
-COPY --from=stage1 /home/app/target/novaschool.jar novaschool.jar
+COPY --from=stage1 /home/app/target/novaschool-0.0.1-SNAPSHOT.jar novaschool.jar
 ENTRYPOINT ["sh", "-c", "java -jar /novaschool.jar"]
