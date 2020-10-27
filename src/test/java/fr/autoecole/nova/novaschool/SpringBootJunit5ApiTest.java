@@ -24,7 +24,6 @@ public class SpringBootJunit5ApiTest {
 	@Value("${server.port}")
     private int serverPort=8082;
 
-
 	 @Test
 	 @DisplayName("/hello rest api test ")
 	 void testMessage() {

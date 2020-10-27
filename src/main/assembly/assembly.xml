@@ -16,6 +16,7 @@
             	<include>**/*.properties</include>
             	<include>**/*.yml</include>
             </includes>
+            <lineEnding>windows></lineEnding>
         </fileSet>
     </fileSets>
     <files>
