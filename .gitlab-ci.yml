@@ -10,6 +10,8 @@ docker-build-master:
   script:
     - docker build --pull -t "tzrocky/nova_project" .
     - docker push "tzrocky/nova_project"
+    - docker run -p 5005:8080 "tzrocky/nova_project":latest /bin/bash
+    - docker run --name some-mysql -e MYSQL_ROOT_PASSWORD= -d mysql:latest
   only:
     variables:
       - $CI_DEFAULT_BRANCH == $CI_COMMIT_REF_NAME
